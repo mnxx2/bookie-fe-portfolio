@@ -16,7 +16,7 @@ export default function Register() {
 
     try {
       setLoading(true);
-      const response = await axios.post("/auth/register", form, {
+      await axios.post("/auth/register", form, {
         headers: { "Content-Type": "application/json" },
       });
 
