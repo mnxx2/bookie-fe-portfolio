@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bookie-fe-portfolio/static/css/main.1d7f65e5.css",
+    "main.js": "/bookie-fe-portfolio/static/js/main.b57007e2.js",
+    "static/js/453.d7446e4a.chunk.js": "/bookie-fe-portfolio/static/js/453.d7446e4a.chunk.js",
+    "index.html": "/bookie-fe-portfolio/index.html",
+    "main.1d7f65e5.css.map": "/bookie-fe-portfolio/static/css/main.1d7f65e5.css.map",
+    "main.b57007e2.js.map": "/bookie-fe-portfolio/static/js/main.b57007e2.js.map",
+    "453.d7446e4a.chunk.js.map": "/bookie-fe-portfolio/static/js/453.d7446e4a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d7f65e5.css",
+    "static/js/main.b57007e2.js"
+  ]
+}
