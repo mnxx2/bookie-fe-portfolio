@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import instance from "../api/axiosinstance";
 
 export default function Register() {
   const [form, setForm] = useState({ email: "", name: "", password: "" });
@@ -16,7 +17,7 @@ export default function Register() {
 
     try {
       setLoading(true);
-      await axios.post("/auth/register", form, {
+      await instance.post("/auth/register", form, {
         headers: { "Content-Type": "application/json" },
       });
 

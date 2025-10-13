@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../AuthContext"; // 경로는 프로젝트 구조에 맞게
 import { useNavigate } from "react-router-dom";
+import instance from "../api/axiosinstance";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -20,7 +21,7 @@ export default function Login() {
 
     try {
       setLoading(true);
-      const response = await axios.post("/auth/login", form, {
+      const response = await instance.post("/auth/login", form, {
         headers: { "Content-Type": "application/json" },
       });
 
