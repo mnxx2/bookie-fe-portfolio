@@ -23,7 +23,7 @@ export default function SearchBar({ query, onChange, onSubmit }) {
           marginLeft: "10px",
           padding: "8px 16px",
           fontSize: "16px",
-          backgroundColor: "rgba(174, 89, 253, 1)",
+          backgroundColor: "sienna",
           color: "white",
           border: "none",
           borderRadius: "6px",

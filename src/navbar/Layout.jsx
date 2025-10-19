@@ -8,7 +8,7 @@ export default function Layout() {
   // 동적으로 style 계산
   const mainStyle = {
     flex: 1,
-    backgroundColor: "#ffe5e9ff",
+    backgroundColor: "#f7f2e8",
     display: "flex",
     justifyContent: "center",
     marginTop: "2.5rem", // mt-10

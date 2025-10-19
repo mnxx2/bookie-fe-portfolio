@@ -1,0 +1,65 @@
+.bookDetail-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.book-header {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.thumbnail {
+  width: 160px;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.text-info {
+  flex: 1;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.authors,
+.publisher,
+.isbn {
+  margin: 4px 0;
+  color: #555;
+}
+
+.book-content {
+  margin-top: 24px;
+}
+
+.book-content h2 {
+  margin-bottom: 8px;
+}
+
+.book-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.go-to-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.addBookButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}

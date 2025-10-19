@@ -40,4 +40,19 @@ const addBookToShelf = async (bookId) => {
   }
 };
 
-export { getBookShelves, searchBooks, addBook, addBookToShelf };
+const updateBookReport = async (bookId, data) => {
+  try {
+    const response = await instance.put(`/bookshelves/${bookId}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  getBookShelves,
+  searchBooks,
+  addBook,
+  addBookToShelf,
+  updateBookReport,
+};

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { searchBooks, addBook, addBookToShelf } from "./BooksApi";
 import SearchBar from "./SearchBar";
 import BookCard from "./BookCard";
+import BookDetail from "./BookDetail";
 
 export default function SearchArea() {
   const [query, setQuery] = useState("");
@@ -9,6 +10,7 @@ export default function SearchArea() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [isEnd, setIsEnd] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
   const token = localStorage.getItem("accessToken");
 
   const handleChange = (e) => setQuery(e.target.value);
@@ -37,20 +39,25 @@ export default function SearchArea() {
   const handleBookClick = async (book) => {
     try {
       setLoading(true);
+      setSelectedBook(book);
 
-      // 1. books 테이블에 책 저장 요청 (isbn 파라미터 전달)
-      const savedBook = await addBook(book.isbn.split(" ")[0]); // isbn 문자열은 공백으로 여러개가 올 수 있으니 첫번째만 사용
+      // // 1. books 테이블에 책 저장 요청 (isbn 파라미터 전달)
+      // const savedBook = await addBook(book.isbn.split(" ")[0]); // isbn 문자열은 공백으로 여러개가 올 수 있으니 첫번째만 사용
 
-      // 2. bookshelves 테이블에 책장 추가 요청 (bookId 필요)
-      await addBookToShelf(savedBook.id, token);
+      // // 2. bookshelves 테이블에 책장 추가 요청 (bookId 필요)
+      // await addBookToShelf(savedBook.id, token);
 
-      alert(`'${savedBook.title}' 책이 책장에 추가되었습니다.`);
+      // alert(`'${savedBook.title}' 책이 책장에 추가되었습니다.`);
     } catch (error) {
       console.error("책장 추가 실패:", error);
       alert(error.response?.data?.message || "책장에 책 추가에 실패했습니다.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCloseModal = () => {
+    setSelectedBook(null);
   };
 
   const handlePrev = () => {
@@ -115,7 +122,7 @@ export default function SearchArea() {
                   padding: "8px 16px",
                   marginRight: "10px",
                   cursor: "pointer",
-                  backgroundColor: "rgba(174, 89, 253, 1)",
+                  backgroundColor: "sienna",
                   color: "white",
                   borderRadius: "5px",
                   border: "none",
@@ -131,7 +138,7 @@ export default function SearchArea() {
                   padding: "8px 16px",
                   marginLeft: "10px",
                   cursor: "pointer",
-                  backgroundColor: "rgba(174, 89, 253, 1)",
+                  backgroundColor: "sienna",
                   color: "white",
                   borderRadius: "5px",
                   border: "none",
@@ -141,8 +148,56 @@ export default function SearchArea() {
               </button>
             </div>
           )}
+
+          {selectedBook && (
+            <div style={modalOverlayStyle} onClick={handleCloseModal}>
+              <div
+                style={modalContentStyle}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button style={closeButtonStyle} onClick={handleCloseModal}>
+                  ✕
+                </button>
+                <BookDetail selectedBook={selectedBook} />
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>
   );
 }
+
+const modalOverlayStyle = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: "rgba(0, 0, 0, 0.6)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 1000,
+};
+
+const modalContentStyle = {
+  backgroundColor: "white",
+  padding: "20px",
+  borderRadius: "10px",
+  maxWidth: "600px",
+  width: "90%",
+  position: "relative",
+  maxHeight: "90vh",
+  overflowY: "auto",
+};
+
+const closeButtonStyle = {
+  position: "absolute",
+  top: "10px",
+  right: "10px",
+  background: "transparent",
+  border: "none",
+  fontSize: "1.5rem",
+  cursor: "pointer",
+};

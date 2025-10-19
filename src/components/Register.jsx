@@ -123,7 +123,7 @@ export default function Register() {
           border: "none",
           borderRadius: "5px",
           color: "white",
-          backgroundColor: "rgba(174, 89, 253, 1)",
+          backgroundColor: "sienna",
         }}
       >
         {loading ? "처리중..." : "회원가입"}
