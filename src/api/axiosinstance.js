@@ -4,7 +4,7 @@ import axios from "axios";
 // const baseURL = "http://localhost:3001";
 
 // 배포 - 포트폴리오
-const baseURL = "https://bookie-be.azurewebsites.net/";
+const baseURL = "https://bookie-be-portfolio.onrender.com";
 
 // axios 인스턴스 생성
 const instance = axios.create({
@@ -26,7 +26,7 @@ instance.interceptors.request.use(
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 // 응답 인터셉터 : 에러 처리나 공통 응답 처리
@@ -42,12 +42,12 @@ instance.interceptors.response.use(
         return Promise.resolve({ data: {} });
       } else {
         window.location.href = `/login?redirect=${encodeURIComponent(
-          currentPath
+          currentPath,
         )}`;
       }
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default instance;
